@@ -15,6 +15,18 @@ export default [
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     {
+        files: ['**/*.{js,ts}'],
+        rules: {
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
+        },
+    },
+    {
         files: ['tests/**/*.{js,mjs,cjs,ts}'],
         ...jest.configs['flat/recommended'],
         rules: {
