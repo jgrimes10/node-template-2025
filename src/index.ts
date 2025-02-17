@@ -1,8 +1,8 @@
 import sequelize from './db-connection';
 import { add } from './utils';
-import {createServer} from "./server";
-import logger from "./middleware/logger";
-import config from "./config";
+import { createServer } from './server';
+import logger from './middleware/logger';
+import config from './config';
 
 const server = createServer();
 
@@ -12,5 +12,5 @@ const server = createServer();
 
     server.listen(config.port, () => {
         logger.info(`Server is running on port ${config.port}`);
-    })
+    });
 })();

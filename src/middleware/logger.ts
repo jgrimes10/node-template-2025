@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import winston from 'winston';
-import config from "../config";
+import config from '../config';
 
 /** The directory where the logs will be stored. */
 const logsDir = 'logs';
@@ -42,12 +42,11 @@ const consoleOptions: winston.transports.ConsoleTransportOptions = {
     format: winston.format.colorize(),
 };
 
-
 /** The logger instance. */
 const logger = winston.createLogger({
     transports: [
         new winston.transports.File(combinedFileOptions),
-        new winston.transports.File(errorFileOptions)
+        new winston.transports.File(errorFileOptions),
     ],
     // Do not exit on handled exceptions.
     exitOnError: false,
