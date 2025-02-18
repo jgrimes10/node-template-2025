@@ -20,7 +20,10 @@ const combinedFileOptions: winston.transports.FileTransportOptions = {
     level: 'info',
     filename: combinedLogFile,
     handleExceptions: true,
-    format: winston.format.json(),
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
     maxsize: 5242880, // 5MB
     maxFiles: 5,
 };
@@ -30,7 +33,10 @@ const errorFileOptions: winston.transports.FileTransportOptions = {
     level: 'error',
     filename: errorLogFile,
     handleExceptions: true,
-    format: winston.format.json(),
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
     maxsize: 5242880, // 5MB
     maxFiles: 5,
 };
@@ -39,7 +45,10 @@ const errorFileOptions: winston.transports.FileTransportOptions = {
 const consoleOptions: winston.transports.ConsoleTransportOptions = {
     level: 'debug',
     handleExceptions: true,
-    format: winston.format.colorize(),
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.colorize()
+    ),
 };
 
 /** The logger instance. */
