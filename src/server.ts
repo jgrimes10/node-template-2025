@@ -2,7 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
 import morganMiddleware from './middleware/morgan';
-import { NotFoundError } from './errors/not-found-error';
+import { NotFoundError } from './errors/not-found.error';
 import { errorHandler } from './middleware/error-handler';
 
 export const createServer = () => {

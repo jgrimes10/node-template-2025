@@ -1,12 +1,12 @@
 /**
- * Custom abstract class for errors.
+ * Custom abstract error class.
  */
 export abstract class CustomError extends Error {
-    /** The status code of the error. */
+    /** The status code to be sent to the client. */
     abstract statusCode: number;
 
     /**
-     * Constructor for the CustomError class.
+     * Creates an instance of CustomError.
      * @param {string} message - The error message.
      */
     protected constructor(message: string) {
@@ -17,8 +17,8 @@ export abstract class CustomError extends Error {
     }
 
     /**
-     * Serialize the errors.
-     * @returns {object[]} - The serialized errors.
+     * Serializes the error.
+     * @returns {object[]} - An array of error objects.
      */
     abstract serializeErrors(): { message: string; field?: string }[];
 }

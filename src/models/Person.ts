@@ -7,6 +7,7 @@ import {
     CreatedAt,
     UpdatedAt,
 } from 'sequelize-typescript';
+import { z } from 'zod';
 
 interface PersonAttributes {
     id: number;
@@ -17,6 +18,10 @@ interface PersonAttributes {
 // so we can allow optional attributes.
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 interface PersonCreationAttributes extends Optional<PersonAttributes, 'id'> {}
+
+export const PersonCreationSchema = z.object({
+    name: z.string().min(3, 'Name must be at least 3 characters long'),
+});
 
 @Table({
     timestamps: true,

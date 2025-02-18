@@ -1,14 +1,14 @@
-import { CustomError } from './custom-error';
+import { CustomError } from './custom.error';
 
 /**
- * Custom error class for not found errors.
+ * Custom error class to handle route not found errors.
  */
 export class NotFoundError extends CustomError {
     /** @inheritdoc */
-    statusCode = 404;
+    statusCode: number = 404;
 
     /**
-     * Constructor for the NotFoundError class.
+     * Creates an instance of NotFoundError.
      */
     constructor() {
         super('Route not found');

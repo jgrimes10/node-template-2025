@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { CustomError } from '../errors/custom-error';
+import { CustomError } from '../errors/custom.error';
 
 /**
- * Error handler middleware.
+ * Middleware to handle errors.
  * @param {Error} err - The error object.
  * @param {Request} _req - The request object.
  * @param {Response} res - The response object.
@@ -15,14 +15,12 @@ export const errorHandler = (
     res: Response,
     _next: NextFunction
 ): Response => {
-    // If the error is a custom error, return the serialized errors.
     if (err instanceof CustomError) {
         return res
             .status(err.statusCode)
             .send({ errors: err.serializeErrors() });
     }
 
-    // Otherwise, return a generic error message.
     return res.status(500).send({
         errors: [{ message: 'Something went wrong' }],
     });
