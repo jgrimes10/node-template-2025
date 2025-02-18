@@ -4,6 +4,7 @@ import 'express-async-errors';
 import morganMiddleware from './middleware/morgan';
 import { NotFoundError } from './errors/not-found.error';
 import { errorHandler } from './middleware/error-handler';
+import { router } from './routes';
 
 export const createServer = () => {
     const app = express();
@@ -13,9 +14,7 @@ export const createServer = () => {
         .use(express.json())
         .use(cors());
 
-    app.get('/health', (_req: Request, res: Response) => {
-        res.json({ ok: true });
-    });
+    app.use('/api', router);
 
     // Catch all for unknown routes.
     app.all('/*', async () => {
