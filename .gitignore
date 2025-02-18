@@ -131,6 +131,9 @@ dist
 # Stores JetBrains IDEs configuration
 .idea
 
+# SQLite database files
+*.sqlite
+
 # yarn v2
 .yarn/cache
 .yarn/unplugged

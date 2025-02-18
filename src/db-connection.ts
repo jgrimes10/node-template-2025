@@ -1,10 +1,26 @@
 import config from './config';
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 
-const sequelize = new Sequelize({
+const env = config.env;
+
+let sequelizeOptions: SequelizeOptions = {
     ...config.getDatabaseConfig(),
-    dialect: 'mysql',
     models: [__dirname + '/models'],
-});
+};
+
+if (env === 'production') {
+    sequelizeOptions = {
+        ...sequelizeOptions,
+        dialect: 'mysql',
+    };
+} else {
+    sequelizeOptions = {
+        ...sequelizeOptions,
+        dialect: 'sqlite',
+        storage: './database.sqlite',
+    };
+}
+
+const sequelize = new Sequelize(sequelizeOptions);
 
 export default sequelize;
